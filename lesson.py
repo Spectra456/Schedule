@@ -1,54 +1,55 @@
 class Lesson:
 
-    def getLessonTime(self,lesson):
+    def __init__(self, lesson):
+        self._lesson = lesson
+
+    def getLessonTime(self):
         """
         Getting time of the lesson
         :param lesson:
         :return: two strings with lesson start and end time
         """
-        return lesson['time_start'], lesson['time_end']
+        return self._lesson['time_start'], self._lesson['time_end']
 
-    def getLessonType(self, lesson):
+    def getLessonType(self):
         """
         Getting type of the lesson
         :param lesson:
         :return: type of the lesson
         """
-        return lesson['typeObj']['name']
+        return self._lesson['typeObj']['name']
 
-    def getGroupsNumbers(self, lesson):
+    def getGroupsNumbers(self):
         """
         Getting number of the the group
         :param lesson:
         :return: number of the group(str)
         """
-        groups = [group['name'] for group in lesson['groups']]
+        groups = [group['name'] for group in self._lesson['groups']]
         return ', '.join(groups)
 
-    def getLessonTeacherName(self, lesson):
+    def getLessonTeacherName(self):
         """
         Getting name of the lesson teacher
         :param lesson:
         :return: name of the teacher
         """
         try:
-          teacherName = lesson['teachers'][0]['full_name']
+          teacherName = self._lesson['teachers'][0]['full_name']
         except:
           teacherName = "Неизвестно"
 
         return teacherName
 
-    def getLessonAddress(self,lesson):
+    def getLessonAddress(self):
         """
         Getting address of the lesson
         :param lesson:
         :return: address of the lesson
         """
         try:
-          Address = lesson['auditories'][0]['building']['name'] + ", ауд. " + lesson['auditories'][0]['name']
+          Address = self._['auditories'][0]['building']['name'] + ", ауд. " + self._['auditories'][0]['name']
         except:
           Address = "Неизвестно"
 
         return Address
-
-        return lesson['auditories'][0]['building']['name'] + ", ауд. " + lesson['auditories'][0]['name']

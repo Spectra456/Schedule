@@ -1,12 +1,19 @@
 from schedule import Schedule
+from lesson import Lesson
 
-s = Schedule("2018-05-20")
-a = s.getDaySchedule(5)
-lessons = a.get('lessons')
-print(a.get('date'))
-print(lessons[0].get('subject'))
-print(s.getLessonType(lessons[0]))
-print(s.getLessonTime(lessons[0]))
-print(s.getLessonTeacherName(lessons[0]))
-print(s.getGroupsNumbers(lessons[0]))
-print(s.getLessonAddress(lessons[0]))
+
+def main():
+    s = Schedule()
+    s.setDate("2018-05-20")
+    a = s.getDaySchedule(5)
+    lessons = a['lessons']
+
+
+    for lesson in s.getDaySchedule(5)['lessons']:
+      esson = Lesson(lesson)
+      print(lesson['subject'])
+      print(esson.getLessonType())
+      print(esson.getGroupsNumbers())
+
+if __name__ == '__main__':
+    main()

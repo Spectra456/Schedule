@@ -1,11 +1,15 @@
 import requests
 import json
-from lesson import Lesson
 
-class Schedule(Lesson):
 
-    def __init__(self, date):
-        self._url = "http://ruz2.spbstu.ru/api/v1/ruz/scheduler/24118?date=" + date
+class Schedule():
+
+    def __init__(self):
+
+        self._url = "http://ruz2.spbstu.ru/api/v1/ruz/scheduler/24118?date="
+
+    def setDate(self, date):
+        self._url = self._url + date
 
     def getWeekSchedule(self):
         """
