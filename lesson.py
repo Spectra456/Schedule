@@ -22,11 +22,8 @@ class Lesson:
         :param lesson:
         :return: number of the group(str)
         """
-        groupsNum = len(lesson['groups'])
-        groups = [None] * groupsNum
-        for group in range(groupsNum):
-            groups[group] = lesson['groups'][group]['name']
-        return groups
+        groups = [group['name'] for group in lesson['groups']]
+        return ', '.join(groups)
 
     def getLessonTeacherName(self, lesson):
         """

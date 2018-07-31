@@ -26,14 +26,3 @@ class Schedule(Lesson):
 
 
 
-s = Schedule("2018-05-20")
-a = s.getDaySchedule(5)
-lessons = a.get('lessons')
-print(a.get('date'))
-print(lessons[1].get('subject'))
-print(s.getLessonType(lessons[1]))
-print(s.getLessonTime(lessons[1]))
-print(s.getLessonTeacherName(lessons[2]))
-print(s.getGroupsNumbers(lessons[1]))
-print(s.getLessonAddress(lessons[1]))
-
