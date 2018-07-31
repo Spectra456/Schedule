@@ -1,7 +1,7 @@
 import requests
 import json
 
-class ScheduleParser:
+class Schedule:
 
     def __init__(self, url):
         self._url = url
@@ -11,7 +11,8 @@ class ScheduleParser:
         Getting week schedule
         :return: list with day's schedule
         """
-        return list(json.loads(requests.get(self._url).text).values())[1]
+        jsonData = json.loads(requests.get(self._url).text)
+        return list(jsonData.values())[1]
 
     def getDaySchedule(self, day):
         """
@@ -25,7 +26,6 @@ class ScheduleParser:
     def getLessonTime(self,lesson):
         """
         Getting time of the lesson
-        :param day:
         :param lesson:
         :return: two strings with lesson start and end time
         """
@@ -34,7 +34,6 @@ class ScheduleParser:
     def getLessonType(self, lesson):
         """
         Getting type of the lesson
-        :param day:
         :param lesson:
         :return: type of the lesson
         """
@@ -43,19 +42,18 @@ class ScheduleParser:
     def getGroupsNumbers(self, lesson):
         """
         Getting number of the the group
-        :param day:
         :param lesson:
         :return: number of the group(str)
         """
-        groups = ""
-        for group in range(len(lesson.get('groups'))):
-            groups = groups + " ," + lesson.get('groups')[group].get('name')
+        groupsNum = len(lesson.get('groups'))
+        groups = [None] * groupsNum
+        for group in range(groupsNum):
+            groups[group] = lesson.get('groups')[group].get('name')
         return groups
 
     def getLessonTeacherName(self, lesson):
         """
         Getting name of the lesson teacher
-        :param day:
         :param lesson:
         :return: name of the teacher
         """
@@ -64,7 +62,6 @@ class ScheduleParser:
     def getLessonAddress(self,lesson):
         """
         Getting address of the lesson
-        :param day:
         :param lesson:
         :return: address of the lesson
         """
@@ -72,16 +69,14 @@ class ScheduleParser:
 
 
 
-
-
-
-
-
-
 url = "http://ruz2.spbstu.ru/api/v1/ruz/scheduler/24118?date=2018-5-14"
-s = ScheduleParser(url)
+s = Schedule(url)
 a = s.getDaySchedule(5)
 lessons = a.get('lessons')
-a = s.getLessonAddress(lessons[0])
-print(a)
-#  Получение лессонов
+print(a.get('date'))
+print(lessons[0].get('subject'))
+print(s.getLessonType(lessons[0]))
+print(s.getLessonTime(lessons[0]))
+print(s.getLessonTeacherName(lessons[0]))
+print(s.getLessonAddress(lessons[0]))
+
