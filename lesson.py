@@ -48,7 +48,7 @@ class Lesson:
         :return: address of the lesson
         """
         try:
-          Address = self._['auditories'][0]['building']['name'] + ", ауд. " + self._['auditories'][0]['name']
+          Address = self._lesson['auditories'][0]['building']['name'] + ", ауд. " + self._lesson['auditories'][0]['name']
         except:
           Address = "Неизвестно"
 
