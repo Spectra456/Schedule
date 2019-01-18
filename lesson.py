@@ -6,7 +6,6 @@ class Lesson:
     def getLessonTime(self):
         """
         Getting time of the lesson
-        :param lesson:
         :return: two strings with lesson start and end time
         """
         return self._lesson['time_start'], self._lesson['time_end']
@@ -14,7 +13,6 @@ class Lesson:
     def getLessonType(self):
         """
         Getting type of the lesson
-        :param lesson:
         :return: type of the lesson
         """
         return self._lesson['typeObj']['name']
@@ -22,7 +20,6 @@ class Lesson:
     def getGroupsNumbers(self):
         """
         Getting number of the the group
-        :param lesson:
         :return: number of the group(str)
         """
         groups = [group['name'] for group in self._lesson['groups']]
@@ -31,7 +28,6 @@ class Lesson:
     def getLessonTeacherName(self):
         """
         Getting name of the lesson teacher
-        :param lesson:
         :return: name of the teacher
         """
         try:
@@ -44,7 +40,6 @@ class Lesson:
     def getLessonAddress(self):
         """
         Getting address of the lesson
-        :param lesson:
         :return: address of the lesson
         """
         try:
